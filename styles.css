@@ -1,11 +1,113 @@
-/* v3.3 styles */
-:root{ --brand:#000; --bg-hero:hsl(0 0% 98%); --radius:1.25rem; }
-body{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif; }
-.hero{ background: var(--bg-hero); border-bottom-left-radius:var(--radius); border-bottom-right-radius:var(--radius); }
-.grid-prod{ display:grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,260px),1fr)); gap:1.25rem; }
-.card-img-top{ aspect-ratio: 3/2; object-fit: cover; }
-:focus-visible{ outline:3px solid color-mix(in hsl, #000, white 30%); outline-offset:2px; }
-.btn-dark{ --bs-btn-bg:#000; --bs-btn-border-color:#000; }
+/* v3.4 styles */
+
+:root{
+  --brand:#000;
+  --bg-hero:hsl(0 0% 5%);
+  --radius:1.25rem;
+}
+
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+}
+
+/* Barra superior */
+.topbar{
+  background:#000;
+  padding:0.4rem 1rem;
+  letter-spacing:0.06em;
+}
+
+/* Hero estilo Castore */
+.hero-landing{
+  position:relative;
+  min-height:75vh;
+  color:#fff;
+  background:#111;
+  overflow:hidden;
+}
+
+.hero-media{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:row;
+}
+
+.hero-media-left,
+.hero-media-right{
+  flex:1;
+}
+
+.hero-media-left img,
+.hero-media-right img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Degradado oscuro encima de las fotos */
+.hero-landing::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,
+    rgba(0,0,0,0.8) 0%,
+    rgba(0,0,0,0.7) 40%,
+    rgba(0,0,0,0.35) 65%,
+    rgba(0,0,0,0.9) 100%);
+}
+
+.hero-overlay{
+  position:relative;
+  z-index:1;
+  min-height:75vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+.hero-eyebrow{
+  text-transform:uppercase;
+  letter-spacing:0.16em;
+  font-size:0.78rem;
+  opacity:0.85;
+  margin-bottom:0.5rem;
+}
+
+.hero-title{
+  font-size:clamp(2.6rem, 4vw, 3.6rem);
+  font-weight:700;
+  margin-bottom:0.75rem;
+}
+
+.hero-subtitle{
+  max-width:32rem;
+  font-size:1rem;
+  opacity:0.95;
+}
+
+/* Grilla de productos */
+.grid-prod{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%,260px),1fr));
+  gap:1.25rem;
+}
+
+.card-img-top{
+  aspect-ratio:3/2;
+  object-fit:cover;
+}
+
+:focus-visible{
+  outline:3px solid color-mix(in hsl, #000, white 30%);
+  outline-offset:2px;
+}
+
+.btn-dark{
+  --bs-btn-bg:#000;
+  --bs-btn-border-color:#000;
+}
 
 /* Badges de descuento */
 .badge-sale{
@@ -27,4 +129,21 @@ body{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell
   margin-left:8px;
   padding:3px 8px;
   border-radius:4px;
+}
+
+/* Responsive hero */
+@media (max-width: 768px){
+  .hero-media{
+    flex-direction:column;
+  }
+  .hero-landing::before{
+    background:linear-gradient(180deg,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.7) 40%,
+      rgba(0,0,0,0.9) 100%);
+  }
+  .hero-overlay{
+    align-items:center;
+    text-align:center;
+  }
 }
