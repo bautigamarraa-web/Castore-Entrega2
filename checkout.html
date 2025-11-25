@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout | Castore Argentina</title>
+
+  <meta name="description" content="Checkout de Castore Argentina. Revisá tu pedido y completá tus datos para confirmar la compra.">
+
+  <link rel="icon" type="image/png" href="assets/logo-castore.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <!-- Tu CSS compilado -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-light">
+  <!-- Barra superior -->
+  <div class="topbar text-center text-white small">
+    ENVÍOS GRATIS EN COMPRAS SUPERIORES A ARS 120.000 · CAMBIOS FÁCILES EN TODO EL PAÍS
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="border-bottom bg-white sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light container py-3">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img
+          src="assets/logo-castore.png"
+          alt="Logo Castore"
+          width="32"
+          height="32"
+        />
+        <span class="fw-semibold">CASTORE ARGENTINA</span>
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#nav"
+        aria-controls="nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <nav class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+
+        <!-- Buscador del header -->
+        <form class="d-none d-lg-block me-3" role="search">
+          <div class="input-group input-group-sm nav-search">
+            <span class="input-group-text border-end-0">
+              <i class="bi bi-search"></i>
+            </span>
+            <input
+              id="navSearch"
+              class="form-control border-start-0"
+              type="search"
+              placeholder="Buscar productos..."
+              aria-label="Buscar productos"
+            />
+          </div>
+        </form>
+
+        <!-- Botón carrito -->
+        <a
+          href="carrito.html"
+          class="btn btn-outline-dark btn-sm rounded-pill position-relative"
+        >
+          <i class="bi bi-bag"></i>
+          <span class="d-none d-sm-inline ms-1">Carrito</span>
+          <span id="cartCount" class="badge bg-danger cart-count-badge" hidden>0</span>
+        </a>
+      </nav>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="container my-4">
+    <!-- Migas de pan -->
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb small mb-0">
+        <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="carrito.html">Carrito</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4">
+      <!-- Columna izquierda: resumen -->
+      <section class="col-lg-7">
+        <h1 class="h3 mb-3">Resumen de compra</h1>
+        <p id="checkoutSummaryEmpty" class="text-muted small">
+          Cargando productos del carrito...
+        </p>
+
+        <div id="checkoutSummaryList" class="list-group mb-3"></div>
+
+        <div class="d-flex justify-content-between align-items-center border-top pt-3">
+          <span class="fw-semibold">Total</span>
+          <span class="fw-bold fs-5">
+            AR$ <span id="checkoutTotal">0</span>
+          </span>
+        </div>
+
+        <p class="text-secondary small mt-2 mb-0">
+          Este checkout es una simulación para el trabajo práctico. Los datos no se envían a ningún servicio real.
+        </p>
+      </section>
+
+      <!-- Columna derecha: formulario -->
+      <section class="col-lg-5">
+        <h2 class="h4 mb-3">Datos de contacto y envío</h2>
+
+        <form id="checkoutForm" class="card p-3 shadow-sm border-0" novalidate>
+          <div class="mb-3">
+            <label class="form-label" for="checkoutName">Nombre y apellido</label>
+            <input
+              type="text"
+              id="checkoutName"
+              class="form-control"
+              placeholder="Juan Pérez"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="checkoutEmail">Correo electrónico</label>
+            <input
+              type="email"
+              id="checkoutEmail"
+              class="form-control"
+              placeholder="nombre@correo.com"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="checkoutAddress">Dirección de envío</label>
+            <input
+              type="text"
+              id="checkoutAddress"
+              class="form-control"
+              placeholder="Calle, número, ciudad"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="checkoutPayment">Método de pago</label>
+            <select id="checkoutPayment" class="form-select" required>
+              <option value="">Seleccionar...</option>
+              <option value="tarjeta">Tarjeta de crédito/débito</option>
+              <option value="transferencia">Transferencia bancaria</option>
+              <option value="contraentrega">Pago contra entrega</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-dark w-100">
+            Confirmar pedido
+          </button>
+
+          <p class="text-muted small mt-2 mb-0">
+            Al confirmar, verás un mensaje de agradecimiento. Este flujo es solo demostrativo.
+          </p>
+        </form>
+
+        <a href="carrito.html" class="btn btn-link btn-sm mt-3">
+          ← Volver al carrito
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-5 border-top py-4 bg-light">
+    <div class="container d-flex flex-column flex-lg-row justify-content-between gap-3">
+      <p class="mb-0 small">© <span id="year"></span> Castore Argentina.</p>
+      <ul class="list-inline mb-0 small">
+        <li class="list-inline-item"><a href="#" class="link-body-emphasis">Privacidad</a></li>
+        <li class="list-inline-item"><a href="#" class="link-body-emphasis">Términos</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Script simple para mostrar resumen del carrito en el checkout -->
+  <script>
+    (function () {
+      const CART_KEY = "castore-cart";
+      const list = document.getElementById("checkoutSummaryList");
+      const totalSpan = document.getElementById("checkoutTotal");
+      const emptyMsg = document.getElementById("checkoutSummaryEmpty");
+
+      if (!list || !totalSpan || !emptyMsg) return;
+
+      let cart = [];
+      try {
+        cart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+      } catch (e) {
+        cart = [];
+      }
+
+      if (!cart.length) {
+        emptyMsg.textContent =
+          "Tu carrito está vacío. Volvé al catálogo para añadir productos.";
+        return;
+      }
+
+      emptyMsg.style.display = "none";
+
+      let total = 0;
+
+      cart.forEach((item) => {
+        const qty = item.quantity || 1;
+        const price = Number(item.price || 0);
+        const subtotal = qty * price;
+        total += subtotal;
+
+        const row = document.createElement("div");
+        row.className =
+          "list-group-item d-flex justify-content-between align-items-center";
+        row.innerHTML = `
+          <span>${qty}× ${item.name}</span>
+          <span class="fw-semibold">AR$ ${subtotal.toLocaleString("es-AR")}</span>
+        `;
+        list.appendChild(row);
+      });
+
+      totalSpan.textContent = total.toLocaleString("es-AR");
+
+      // Simulación de envío del formulario
+      const form = document.getElementById("checkoutForm");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("¡Gracias por tu compra! (Checkout de ejemplo para el trabajo práctico)");
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
